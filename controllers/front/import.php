@@ -88,6 +88,7 @@ class BulkImportProductImagesImportModuleFrontController extends ModuleFrontCont
 			ImageManager::resize($tmp_file, $destination_path . '-' . stripslashes($image_type['name']) . '.jpg', $image_type['width'], $image_type['height']);
 		}
 		unlink($source_path . '/' . $filename);
+		unlink($tmp_file);
 		$result['status'] = true;
 		$result['path'] = $destination_path . '.jpg';
 		$result['message'] = $this->trans(
