@@ -12,7 +12,7 @@ class BulkImportProductImagesImportModuleFrontController extends ModuleFrontCont
 	 *
 	 * @return array $result
 	 */
-	public function importImage($filename, $reference, $source_path)
+	private function importImage($filename, $reference, $source_path)
 	{
 		$result = [
 			'status' => null,
@@ -105,7 +105,7 @@ class BulkImportProductImagesImportModuleFrontController extends ModuleFrontCont
 	 *
 	 * @return array $response
 	 */
-	public function importProcess()
+	private function importProcess()
 	{
 		$data = unserialize(Configuration::get('BULKIMPORTPRODUCTIMAGES'));
 		$path = $data['form']['bulkimportproductimages_configuration_form_path_source'];
