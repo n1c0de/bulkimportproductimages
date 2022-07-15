@@ -8,6 +8,7 @@ class BulkImportProductImagesImportModuleFrontController extends ModuleFrontCont
 	 *
 	 * @param string $filename
 	 * @param string $reference
+	 * @param string $source_path
 	 *
 	 * @return array $result
 	 */
