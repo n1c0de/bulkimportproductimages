@@ -227,6 +227,7 @@ class BulkImportProductImages extends Module
 							'Modules.Bulkimportproductimages.Admin'
 						),
 						'name' => $this->_configuration_form_name . '_path_source',
+						'placeholder' => '/var/www/html/your-prestashop/',
 						'required' => true,
 						'desc' => $this->trans(
 							'The folder where the images will be imported.',
