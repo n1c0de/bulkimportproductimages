@@ -152,6 +152,20 @@ class BulkImportProductImages extends Module
 					'Modules.Bulkimportproductimages.Admin'
 				);
 			} else {
+				foreach(ImageManager::MIME_TYPE_SUPPORTED as $mime_type) {
+					preg_match('/\/([a-z0-9.+-]+)$/', $mime_type, $image_format);
+					$scan_by_format = Tools::scandir($this->_configuration_data['form'][$this->_configuration_form_name . '_path_source'], $image_format[1]);
+					if (!empty($scan_by_format) && $image_format[1] !== 'jpg') {
+						$this->_errors[] = $this->trans(
+							'There is %count% %image_extension% image(s) to convert into JPG format to be able to import them.',
+							[
+								'%count%' => count($scan_by_format),
+								'%image_extension%' => strtoupper($image_format[1])
+							],
+							'Modules.Bulkimportproductimages.Admin'
+						);
+					}
+				}
 				$this->_informations[] = $this->trans(
 					'There is %count% image(s) to import.',
 					[
@@ -213,7 +227,7 @@ class BulkImportProductImages extends Module
 					'icon' => 'icon-edit'
 				],
 				'warning' => $this->trans(
-					'You have to name images with the product reference. '
+					'You have to name images with the product reference and have to be a JPG format (reference.jpg). '
 					. 'All images will be imported as product cover images.',
 					[],
 					'Modules.Bulkimportproductimages.Admin'
@@ -227,6 +241,7 @@ class BulkImportProductImages extends Module
 							'Modules.Bulkimportproductimages.Admin'
 						),
 						'name' => $this->_configuration_form_name . '_path_source',
+						'placeholder' => '/var/www/html/your-prestashop/',
 						'required' => true,
 						'desc' => $this->trans(
 							'The folder where the images will be imported.',
