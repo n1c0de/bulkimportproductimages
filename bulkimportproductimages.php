@@ -213,7 +213,7 @@ class BulkImportProductImages extends Module
 					'icon' => 'icon-edit'
 				],
 				'warning' => $this->trans(
-					'You have to name images with the product reference. '
+					'You have to name images with the product reference and have to be a JPG format (reference.jpg). '
 					. 'All images will be imported as product cover images.',
 					[],
 					'Modules.Bulkimportproductimages.Admin'
